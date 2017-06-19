@@ -15,12 +15,14 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 RUN chown -R www-data:www-data /var/lib/nginx
 
 # volume
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx"]
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/var/log/nginx"]
 
 # expose ports
 EXPOSE 80 443
 
+# add nginx conf
+ADD config/nginx.conf /etc/nginx/conf.d/default.conf
+
 WORKDIR /etc/nginx
 
-#CMD ["nginx", "-g", "daemon off;"]
 CMD ["nginx"]
