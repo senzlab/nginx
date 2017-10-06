@@ -21,11 +21,11 @@ RUN chown -R www-data:www-data /var/lib/nginx
 EXPOSE 80 443
 
 # add nginx conf
-ADD config/bankz.com /etc/nginx/sites-available/bankz.com
-ADD config/mscz.com /etc/nginx/sites-available/mscz.com
+ADD config/portal.com /etc/nginx/sites-available/portal.com
+ADD config/rahasak.com /etc/nginx/sites-available/rahasak.com
 
-RUN ln -s /etc/nginx/sites-available/bankz.com /etc/nginx/sites-enabled/
-RUN ln -s /etc/nginx/sites-available/mscz.com /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/portal.com /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/rahasak.com /etc/nginx/sites-enabled/
 
 WORKDIR /etc/nginx
 
