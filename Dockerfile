@@ -15,13 +15,17 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 RUN chown -R www-data:www-data /var/lib/nginx
 
 # volume
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/var/log/nginx"]
+#VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/var/log/nginx"]
 
 # expose ports
 EXPOSE 80 443
 
 # add nginx conf
-ADD config/nginx.conf /etc/nginx/conf.d/default.conf
+ADD config/bankz.com /etc/nginx/sites-available/bankz.com
+ADD config/mscz.com /etc/nginx/sites-available/mscz.com
+
+RUN ln -s /etc/nginx/sites-available/bankz.com /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/mscz.com /etc/nginx/sites-enabled/
 
 WORKDIR /etc/nginx
 
