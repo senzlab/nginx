@@ -23,9 +23,11 @@ EXPOSE 80 443
 # add nginx conf
 ADD config/portal.com /etc/nginx/sites-available/portal.com
 ADD config/rahasak.com /etc/nginx/sites-available/rahasak.com
+ADD config/pay.com /etc/nginx/sites-available/pay.com
 
 RUN ln -s /etc/nginx/sites-available/portal.com /etc/nginx/sites-enabled/
 RUN ln -s /etc/nginx/sites-available/rahasak.com /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/pay.com /etc/nginx/sites-enabled/
 
 WORKDIR /etc/nginx
 
