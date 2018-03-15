@@ -15,19 +15,13 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 RUN chown -R www-data:www-data /var/lib/nginx
 
 # volume
-#VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/var/log/nginx"]
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/var/log/nginx"]
 
 # expose ports
-EXPOSE 80 443
+EXPOSE 80 8443
 
 # add nginx conf
-ADD config/portal.com /etc/nginx/sites-available/portal.com
-ADD config/rahasak.com /etc/nginx/sites-available/rahasak.com
-ADD config/pay.com /etc/nginx/sites-available/pay.com
-
-RUN ln -s /etc/nginx/sites-available/portal.com /etc/nginx/sites-enabled/
-RUN ln -s /etc/nginx/sites-available/rahasak.com /etc/nginx/sites-enabled/
-RUN ln -s /etc/nginx/sites-available/pay.com /etc/nginx/sites-enabled/
+ADD config/nginx.conf /etc/nginx/conf.d/default.conf
 
 WORKDIR /etc/nginx
 
